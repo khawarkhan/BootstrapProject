@@ -48,6 +48,96 @@
         </div>
     </nav>
 
+    <!-- Assignment # 3 - Custom Modal For Reservation Form -->
+    <div class="modal fade" id="reserveModal" role="dialog">
+        <div class="modal-dialog modal-lg" role="content">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Reserve a Table</h4>
+                    <button role="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label for="numberofguests" class="col-md-2 col-form-label">Number of Guests</label>
+                        <!-- 6 radio buttons -->
+                        <div class="col-md-10">
+                            <!-- 1 -->
+                            <div class="form-check form-check-inline">
+                                <input type="radio" class="form-check-input" name="checkguest" id="1g" value="1g" checked>
+                                <label for="1g" class="form-check-label">1</label>
+                            </div>
+
+                            <!-- 2 -->
+                            <div class="form-check form-check-inline">
+                                <input type="radio" class="form-check-input" name="checkguest" id="2g" value="2g">
+                                <label for="2g" class="form-check-label">2</label>
+                            </div>
+
+                            <!-- 3 -->
+                            <div class="form-check form-check-inline">
+                                <input type="radio" class="form-check-input" name="checkguest" id="3g" value="3g">
+                                <label for="3g" class="form-check-label">3</label>
+                            </div>
+
+                            <!-- 4 -->
+                            <div class="form-check form-check-inline">
+                                <input type="radio" class="form-check-input" name="checkguest" id="4g" value="4g">
+                                <label for="4g" class="form-check-label">4</label>
+                            </div>
+
+                            <!-- 5 -->
+                            <div class="form-check form-check-inline">
+                                <input type="radio" class="form-check-input" name="checkguest" id="5g" value="5g">
+                                <label for="5g" class="form-check-label">5</label>
+                            </div>
+
+                            <!-- 6 -->
+                            <div class="form-check form-check-inline">
+                                <input type="radio" class="form-check-input" name="checkguest" id="6g" value="6g">
+                                <label for="6g" class="form-check-label">6</label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Button/Radio group -->
+                    <div class="row form-group">
+                        <label class="col-md-2 col-form-label">Section</label>
+                        <div class="btn-group btn-group-toggle col-sm-10">
+                            <label for="nonsmooking" class="btn btn-danger active">
+                                <input type="radio" name="options" id="nonsmooking" autocomplete="off" checked>Non-smooking
+                            </label>
+
+                            <label for="smooking" class="btn btn-success">
+                                <input type="radio" name="options" id="smooking" autocomplete="off">Smooking
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- input text fields -->
+                    <div class="row form-group">
+                        <label for="date" class="col-sm-2 col-form-label">Date and Time</label>
+                        <div class="col-12 col-sm-3">
+                            <input type="text" class="form-control" id="date" name="date" placeholder="Date">
+                        </div>
+                        <div class="col-12 col-sm-3">
+                            <input type="text" class="form-control" id="time" name="time" placeholder="Time">
+                        </div>
+                    </div>
+
+                    <!-- Last Cancel/Submit buttons with offset -->
+                    <div class="row form-group">
+                        <div class="col-12 offset-md-2 col-md-10">
+                            <button type="button" class="btn bt-sm btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Custom MOdal For Reservation Form Ends ***** -->
+
     <!-- Custom Modal introduction -->
     <div class="modal fade" id="loginModal" role="dialog">
         <div class="modal-dialog modal-lg" role="content">
@@ -83,7 +173,6 @@
 
                         <!-- Buttons -->
                         <div class="form-row">
-
                             <button type="button" class="btn btn-secondary btn-sm ml-auto" data-dismiss="modal">Cancel</button>
                             <button type="button" class="btn btn-primary btn-sm ml-1">Sign in</button>
                         </div>
@@ -93,6 +182,7 @@
 
         </div>
     </div>
+    <!-- ***** Custom Modal introduction Ends *****-->
 
     <!-- HEADER Goes here  Week 1-->
     <header class="jumbotron">
@@ -111,8 +201,11 @@
 
                 <!-- Assignment 2 => Task 3 -->
                 <div class="col-12 col-md align-self-center">
-                    <a role="button" class="btn nav-link btn-warning btn-block" data-toggle="tooltip" data-html="true" title="Or call us at <br><strong>+971 0123456789</strong></br>"
-                        data-placement="bottom" href="#form_reserve">Reserve Table</a>
+                    <!-- <a role="button" class="btn nav-link btn-warning btn-block" data-toggle="tooltip" data-html="true" title="Or call us at <br><strong>+971 0123456789</strong></br>"
+                        data-placement="bottom" href="#form_reserve">Reserve Table</a> -->
+                    <a role="button" class="btn nav-link btn-warning btn-block" data-toggle="modal" data-target="#reserveModal">Reserve
+                        Table
+                    </a>
                 </div>
 
             </div>
@@ -178,7 +271,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Carousel Ends-->
 
         <div class="row row-content align-items-center">
@@ -293,16 +385,7 @@
                         <div class="form-group row">
                             <div class="offset-md-2 col-md-10">
                                 <button type="submit" class="btn btn-primary">Reserve</button>
-                                <!-- <button type="submit" class="btn btn-primary"
-                                    data-container="body"
-                                    data-toggle="popover" 
-                                    data-placement="right" 
-                                    data-title="Title"
-                                    data-content="Some kind of popover"
-                                    data-trigger="dismiss"
-                                    >
-                                    Reserve
-                                </button> -->
+                                <!-- <button type="submit" class="btn btn-primary" data-container="body" data-toggle="popover" data-placement="right" data-title="Title" data-content="Some kind of popover" data-trigger="dismiss" >Reserve </button> -->
                             </div>
                         </div>
 
@@ -358,18 +441,18 @@
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <!-- Javascript -->
-    <!-- <script src="node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="node_modules/tether/dist/js/tether.min.js"></script> -->
-    <script>
+    <!-- <script>
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
             $('[data-toggle="popover"]').popover();
             // $('.popover-dismiss').popover({
             //     trigger: 'focus'
             // });
+            $('.carousel').carousel({
+                interval: 3000
+            })
         });
-
-    </script>
+    </script> -->
 
 </body>
 
