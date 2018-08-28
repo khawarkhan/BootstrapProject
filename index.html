@@ -268,14 +268,9 @@
                         <span class="carousel-control-next-icon"></span>
                     </a>
 
-                    <div class="btn-group" id="carouselButton">
-                        <button class="btn btn-danger btn-sm" id="carousel-pause">
-                            <span class="fa fa-pause"></span>
-                        </button>
-                        <button class="btn btn-danger btn-sm" id="carousel-play">
-                            <span class="fa fa-play"></span>
-                        </button>
-                    </div>
+                    <button class="btn btn-danger btn-sm" id="carouselButton">
+                        <span id="carousel-button-icon" class="fa fa-pause"></span>
+                    </button>
 
                 </div>
             </div>
@@ -341,67 +336,6 @@
             </div>
         </div>
 
-
-        <!-- Form  Assignment # 2 => Task 1-->
-        <div class="row row-content justify-content-center">
-            <div class="col-12 col-sm-8">
-                <div class="card" id="form_reserve">
-                    <h3 class="card-header  bg-warning text-white">Reserve a Table</h3>
-                    <div class="card-body">
-
-                        <div class="form-group row">
-                            <label class="col-md-2 col-form-label" for="numberofguests">Number of Guests</label>
-                            <div class="col-md-10">
-
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="oneguest" id="g1" value="1">
-                                    <label class="form-check-label" for="g1">1</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="oneguest" id="g2" value="2">
-                                    <label class="form-check-label" for="g2">2</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="oneguest" id="g3" value="3">
-                                    <label class="form-check-label" for="g3">3</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="oneguest" id="g4" value="4">
-                                    <label class="form-check-label" for="g4">4</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="oneguest" id="g5" value="5">
-                                    <label class="form-check-label" for="g5">5</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="oneguest" id="g6" value="6">
-                                    <label class="form-check-label" for="g6">6</label>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class=" col-md-2 col-form-label" for="dateandtime">Date and Time</label>
-                            <div class="col-12 col-md-3">
-                                <input type="text" class="form-control" id="date" name="date" placeholder="Date">
-                            </div>
-                            <div class="col-12 col-md-3">
-                                <input type="text" class="form-control" id="time" name="time" placeholder="Time">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="offset-md-2 col-md-10">
-                                <button type="submit" class="btn btn-primary">Reserve</button>
-                                <!-- <button type="submit" class="btn btn-primary" data-container="body" data-toggle="popover" data-placement="right" data-title="Title" data-content="Some kind of popover" data-trigger="dismiss" >Reserve </button> -->
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
     <footer class="footer">
@@ -453,23 +387,22 @@
     <script>
         $(document).ready(function () {
             // $('[data-toggle="tooltip"]').tooltip();
-            // $('[data-toggle="popover"]').popover();
-            // $('.popover-dismiss').popover({
-            //     trigger: 'focus'
-            // });
-            // $('.carousel').carousel({
-            //     interval: 1000
-            // })
 
             $('#mycarousel').carousel({ interval: 1000 })
 
-            $('#carousel-pause').click(function() {
-                $('#mycarousel').carousel('pause');
+            $('#carouselButton').click(function () {
+                if ($('#carouselButton').children('span').hasClass('fa-pause')) {
+                    $('#mycarousel').carousel('pause');
+                    $('#carouselButton').children('span').removeClass('fa-pause');
+                    $('#carouselButton').children('span').addClass('fa-play');
+                }
+                else if ($('#carouselButton').children('span').hasClass('fa-play')) {
+                    $('#mycarousel').carousel('cycle');
+                    $('#carouselButton').children('span').removeClass('fa-play');
+                    $('#carouselButton').children('span').addClass('fa-pause');
+                }
             });
 
-            $('#carousel-play').click(function() {
-                $('#mycarousel').carousel('cycle');
-            });
         });
     </script>
 
