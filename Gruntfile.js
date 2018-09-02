@@ -5,7 +5,7 @@ module.exports = function (grunt) {
     require('time-grunt')(grunt);
 
     // Automatically load required Grunt tasks
-    require('jit-grunt')(grunt,{
+    require('jit-grunt')(grunt, {
         useminPrepare: 'grunt-usemin'
     });
 
@@ -19,29 +19,30 @@ module.exports = function (grunt) {
             }
         },
         watch: {
-            files: 'css/*.scss', 
+            files: 'css/*.scss',
             tasks: ['sass']
         },
         browserSync: {
-             dev: {
-                 bsFiles: {
-                     src: [
-                         'css/*.css',
-                         '*.html',
-                         'js/*.js'
-                     ]
-                 },
-                 options: {
-                     watchTask: true,
-                     server: {
+            dev: {
+                bsFiles: {
+                    src: [
+                        'css/*.css',
+                        '*.html',
+                        'js/*.js'
+                    ]
+                },
+                options: {
+                    watchTask: true,
+                    server: {
                         baseDir: './'
-                     }
-                 }
-             }
+                    }
+                }
+            }
         },
         copy: {
             html: {
                 files: [{
+                    // For html
                     expand: true,
                     dot: true,
                     cwd: './',
@@ -51,6 +52,7 @@ module.exports = function (grunt) {
             },
             fonts: {
                 files: [{
+                    // For fonts
                     expand: true,
                     dot: true,
                     cwd: 'node_modules/font-awesome',
@@ -60,6 +62,7 @@ module.exports = function (grunt) {
             }
         },
         clean: {
+            // Cleans distribution (dist) folder
             build: {
                 src: ['dist/']
             }
@@ -67,18 +70,18 @@ module.exports = function (grunt) {
         imagemin: {
             dynamic: {
                 files: [{
-                    expand: true,
+                    expand: true, // enable dynamic expansion
                     dot: true,
-                    cwd: './',
-                    src: ['img/*.{png,jpg,gif}'],
-                    dest: 'dist/'
+                    cwd: './', // src matches are relative to
+                    src: ['img/*.{png,jpg,gif}'], // actual pattern to match
+                    dest: 'dist/' // to distribution folder
                 }]
             }
         },
         useminPrepare: {
             foo: {
                 dest: 'dist',
-                src: ['contactus.html', 'aboutus.html','index.html']
+                src: ['contactus.html', 'aboutus.html', 'index.html']
             },
             options: {
                 flow: {
@@ -89,7 +92,7 @@ module.exports = function (grunt) {
                     post: {
                         css: [{
                             name: 'cssmin',
-                            createConfig: function(context, block) {
+                            createConfig: function (context, block) {
                                 var generated = context.options.generated;
                                 generated.options = {
                                     keepSpecialComments: 0, rebase: false
@@ -100,19 +103,25 @@ module.exports = function (grunt) {
                 }
             }
         },
+
         concat: {
             options: {
                 seperator: ';'
             },
+            // dist configuration is provided by useminPrepare
             dist: {}
         },
 
         uglify: {
+            // dist configuration is provided by useminPrepare
             dist: {}
         },
+
         cssmin: {
+            // dist configuration is provided by useminPrepare
             dist: {}
         },
+
         filerev: {
             options: {
                 encoding: true,
@@ -120,6 +129,8 @@ module.exports = function (grunt) {
                 length: 20
             },
             release: {
+                // filerev:release hashes(md5) all assets (images, js and css )
+                // in dist directory
                 files: [{
                     src: [
                         'dist/js/*.js',
@@ -128,29 +139,35 @@ module.exports = function (grunt) {
                 }]
             }
         },
+        // Usemin
+        // Replaces all assets with their revved version in html and css files.
+        // options.assetDirs contains the directories for finding the assets
+        // according to their relative paths
         usemin: {
-            html: ['dist/index.html','dist/contactus.html', 'dist/aboutus.html'],
+            html: ['dist/index.html', 'dist/contactus.html', 'dist/aboutus.html'],
             options: {
-                assetDirs: ['dist','dist/css','dist/js']
+                assetDirs: ['dist', 'dist/css', 'dist/js']
             }
-        } ,
+        },
+
         htmlmin: {
-             dist: {
-                 options: {
-                     collapseWhitespace: true
-                 },
-                 files: {
-                     'dist/index.html' : 'dist/index.html',
-                     'dist/aboutus.html': 'dist/aboutus.html',
-                     'dist/contactus.html': 'dist/contactus.html'
-                 }
-             }
+            dist: {
+                options: {
+                    collapseWhitespace: true
+                },
+                files: {
+                    // Source        :  Destination
+                    'dist/index.html': 'dist/index.html',
+                    'dist/aboutus.html': 'dist/aboutus.html',
+                    'dist/contactus.html': 'dist/contactus.html'
+                }
+            }
         }
     });
 
     grunt.registerTask('css', ['sass']);
-    grunt.registerTask('default',['browserSync', 'watch']);
-    grunt.registerTask('build',[
+    grunt.registerTask('default', ['browserSync', 'watch']);
+    grunt.registerTask('build', [
         'clean',
         'copy',
         'imagemin',
